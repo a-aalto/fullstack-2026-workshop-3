@@ -1,12 +1,12 @@
 const express = require('express');
 const path = require('path');
+const port = process.env.PORT || 3000;
 
 // ========================================
 // TODO: Task 1 - Create Express App
 // ========================================
 // Step 1: Create an Express application instance
-
-const PORT = process.env.PORT || 3000;
+const app = express();
 
 // ========================================
 // TODO: Task 2 - Serve Static Files
@@ -14,18 +14,18 @@ const PORT = process.env.PORT || 3000;
 // Configure Express to serve static files from the 'public' directory
 // This middleware automatically serves HTML, CSS, images, etc.
 // Hint: This single line replaces all the file reading logic from Workshop 02!
-
+app.use('static', express.static(path.join(__dirname, 'public')));
 
 // ========================================
 // BONUS: Custom Request Logging Middleware
 // ========================================
 // Uncomment this middleware to log all incoming requests:
-/*
+
 app.use((req, res, next) => {
     console.log(`[${new Date().toISOString()}] ${req.method} ${req.url}`);
     next(); // Don't forget to call next()!
 });
-*/
+
 
 
 // ========================================
@@ -113,17 +113,17 @@ app.use((err, req, res, next) => {
 // Start the Server
 // ========================================
 // TODO: Uncomment the code below to start the server:
-/*
-app.listen(PORT, () => {
-    console.log(`✅ Server is running on http://localhost:${PORT}`);
-    console.log('\n📍 Available routes:');
+
+app.listen(port, () => {
+    console.log(`Server is running on http://localhost:${port}`);
+    console.log('\nAvailable routes:');
     console.log('  GET /              -> Home page');
     console.log('  GET /about         -> About page');
     console.log('  GET /contact       -> Contact page');
     console.log('  GET /api/time      -> Current date/time API');
-    console.log('\n⏹️  Press Ctrl+C to stop the server\n');
+    console.log('\nPress Ctrl+C to stop the server\n');
 });
-*/
+
 
 // ========================================
 // 🎯 IMPLEMENTATION TIPS
